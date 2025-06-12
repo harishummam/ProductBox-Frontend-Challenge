@@ -13,17 +13,48 @@ const NavBar = () => {
       }}
     >
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          RandoStore
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{ flexGrow: 1, fontSize: "1.5rem", letterSpacing: "0.2rem" }}
+        >
+          RANDO STORE
         </Typography>
-        <Box sx={{ display: "flex", gap: 2 }}>
-          <Button color="inherit" component={Link} to="/items">
+        <Box sx={{ display: "flex", gap: 5 }}>
+          <Button
+            color="inherit"
+            sx={{
+              color: "#D6D6D6",
+              fontSize: "1rem",
+              letterSpacing: "0.1rem",
+            }}
+            component={Link}
+            to="/items"
+          >
             Items
           </Button>
-          <Button color="inherit" component={Link} to="/add-item">
+          <Button
+            color="inherit"
+            sx={{
+              color: "#D6D6D6",
+              fontSize: "1rem",
+              letterSpacing: "0.1rem",
+            }}
+            component={Link}
+            to="/add-item"
+          >
             Add Item
           </Button>
-          <Button color="inherit" component={Link} to="/cart">
+          <Button
+            color="inherit"
+            sx={{
+              color: "#D6D6D6",
+              fontSize: "1rem",
+              letterSpacing: "0.1rem",
+            }}
+            component={Link}
+            to="/cart"
+          >
             Cart
           </Button>
         </Box>
