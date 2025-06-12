@@ -29,7 +29,8 @@ const HomeScreen = () => {
             Welcome to RandoStore
           </Typography>
           <Typography variant="h5" color="#D6D6D6">
-            Your one-stop shop for all your needs
+            Your everyday store where ordinary shopping turns into a journey of
+            extraordinary finds.
           </Typography>
         </Box>
 
@@ -65,6 +66,7 @@ const HomeScreen = () => {
           <Button
             variant="outlined"
             size="large"
+            onClick={() => navigate("/add-item")}
             sx={{
               width: "65%",
               color: "#D6D6D6",

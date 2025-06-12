@@ -19,6 +19,15 @@ const ItemsScreen = () => {
   const dispatch = useDispatch();
   const { data: items, isLoading, isError } = useGetItemsQuery();
 
+  const getImageUrl = (img) => {
+    try {
+      const url = new URL(img);
+      console.log(url);
+      return img;
+    } catch {
+      return `http://localhost:3000/img/${img.split("/").pop()}`;
+    }
+  };
 
   const handleAddToCart = (item) => {
     dispatch(addToCart(item));
@@ -85,7 +94,7 @@ const ItemsScreen = () => {
               <CardMedia
                 component="img"
                 height="250"
-                image={`http://localhost:3000/img/${item.img.split("/").pop()}`}
+                image={getImageUrl(item.img)}
                 alt={item.name}
                 sx={{
                   objectFit: "cover",
