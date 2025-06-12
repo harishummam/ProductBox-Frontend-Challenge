@@ -1,8 +1,10 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+  const navigate = useNavigate();
   return (
     <AppBar
       position="static"
@@ -16,7 +18,14 @@ const NavBar = () => {
         <Typography
           variant="h6"
           component="div"
-          sx={{ flexGrow: 1, fontSize: "1.5rem", letterSpacing: "0.2rem" }}
+          onClick={() => navigate("/")}
+          sx={{
+            flexGrow: 1,
+            fontSize: "1.5rem",
+            letterSpacing: "0.2rem",
+            cursor: "pointer",
+            color: "#D6D6D6",
+          }}
         >
           RANDO STORE
         </Typography>

@@ -8,32 +8,21 @@ import {
   Typography,
   Box,
   CircularProgress,
+  Button,
 } from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useGetItemsQuery } from "../api/api";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../features/cartSlice";
 
 const ItemsScreen = () => {
-    const {data: items, isLoading, isError} = useGetItemsQuery();
+  const dispatch = useDispatch();
+  const { data: items, isLoading, isError } = useGetItemsQuery();
 
-  console.log(items);
 
-//   useEffect(() => {
-//     const fetchItems = async () => {
-//       try {
-//         const response = await fetch("http://localhost:3000/items");
-//         if (!response.ok) {
-//           throw new Error("Failed to fetch items");
-//         }
-//         const data = await response.json();
-//         setItems(data);
-//         setLoading(false);
-//       } catch (err) {
-//         setError(err.message);
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchItems();
-//   }, []);
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item));
+  };
 
   if (isLoading) {
     return (
@@ -43,10 +32,9 @@ const ItemsScreen = () => {
           justifyContent: "center",
           alignItems: "center",
           height: "80vh",
-          backgroundColor: "#1F262E",
         }}
       >
-        <CircularProgress sx={{ color: "#D6D6D6" }} />
+        <CircularProgress />
       </Box>
     );
   }
@@ -59,56 +47,48 @@ const ItemsScreen = () => {
           justifyContent: "center",
           alignItems: "center",
           height: "80vh",
-          backgroundColor: "#1F262E",
         }}
       >
-        <Typography color="#D6D6D6">Failed to fetch items</Typography>
+        <Typography>Failed to fetch items</Typography>
       </Box>
     );
   }
 
   return (
-    <Container
-      maxWidth="xl"
-      sx={{
-        py: 8,
-        backgroundColor: "#1F262E",
-        minHeight: "100vh",
-      }}
-    >
+    <Container maxWidth="xl" sx={{ py: 8, minHeight: "100vh" }}>
       <Typography
         variant="h4"
         sx={{
-          color: "#D6D6D6",
           mb: 6,
           fontWeight: "bold",
           letterSpacing: "0.1rem",
+          color: "#D6D6D6",
+          textAlign: "center",
         }}
       >
         Browse Our Items
       </Typography>
-      <Grid container spacing={4} sx={{ justifyContent: "space-between" }}>
+      <Grid container spacing={4} sx={{ marginX: "5rem" }}>
         {items.map((item) => (
           <Grid item key={item.id} xs={12} sm={6} md={3}>
             <Card
               sx={{
                 height: "100%",
-                width: "20rem",
+                width: "19rem",
                 display: "flex",
                 flexDirection: "column",
                 transition: "all 0.3s ease",
+                border: "2px solid #2C3440",
                 backgroundColor: "#2C3440",
-                border: "2px solid transparent",
               }}
             >
               <CardMedia
                 component="img"
-                height="200"
-                image={item.img}
+                height="250"
+                image={`http://localhost:3000/img/${item.img.split("/").pop()}`}
                 alt={item.name}
                 sx={{
                   objectFit: "cover",
-                  borderBottom: "2px solid #1F262E",
                 }}
               />
               <CardContent sx={{ flexGrow: 1 }}>
@@ -117,9 +97,9 @@ const ItemsScreen = () => {
                   variant="h6"
                   component="h2"
                   sx={{
-                    color: "#D6D6D6",
                     fontWeight: "bold",
                     letterSpacing: "0.05rem",
+                    color: "#D6D6D6",
                   }}
                 >
                   {item.name}
@@ -127,13 +107,28 @@ const ItemsScreen = () => {
                 <Typography
                   variant="h5"
                   sx={{
-                    color: "#D6D6D6",
                     fontWeight: "bold",
                     letterSpacing: "0.05rem",
+                    color: "#D6D6D6",
+                    mb: 2,
                   }}
                 >
                   ${item.price}
                 </Typography>
+                <Button
+                  variant="contained"
+                  onClick={() => handleAddToCart(item)}
+                  startIcon={<ShoppingCartIcon />}
+                  sx={{
+                    backgroundColor: "#4CAF50",
+                    "&:hover": {
+                      backgroundColor: "#45a049",
+                    },
+                    width: "100%",
+                  }}
+                >
+                  Add to Cart
+                </Button>
               </CardContent>
             </Card>
           </Grid>

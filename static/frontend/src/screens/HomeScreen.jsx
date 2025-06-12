@@ -1,7 +1,9 @@
 import React from "react";
 import { Container, Typography, Box, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const HomeScreen = () => {
+  const navigate = useNavigate();
   return (
     <Container maxWidth="xl">
       <Box
@@ -44,6 +46,7 @@ const HomeScreen = () => {
           <Button
             variant="outlined"
             size="large"
+            onClick={() => navigate("/items")}
             sx={{
               width: "65%",
               color: "#D6D6D6",
