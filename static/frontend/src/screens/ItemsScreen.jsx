@@ -2,22 +2,10 @@ import React, { useState } from "react";
 import {
   Container,
   Grid,
-  Card,
-  CardContent,
-  CardMedia,
   Typography,
   Box,
   CircularProgress,
-  Button,
-  Alert,
-  Snackbar,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  TextField,
 } from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useGetItemsQuery } from "../api/api";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../features/cartSlice";
