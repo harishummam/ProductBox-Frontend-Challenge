@@ -8,6 +8,8 @@ import {
   Paper,
   Grid,
   Button,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -69,7 +71,11 @@ const CartScreen = () => {
         Shopping Cart
       </Typography>
 
-      <Grid container spacing={4} sx={{ justifyContent: "center",  marginX: "5rem"}}>
+      <Grid
+        container
+        spacing={4}
+        sx={{ justifyContent: "center", marginX: "5rem" }}
+      >
         <Grid item xs={12} md={7} sx={{ width: "45%" }}>
           <Paper
             elevation={3}
@@ -236,6 +242,7 @@ const CartScreen = () => {
           </Paper>
         </Grid>
       </Grid>
+      
     </Container>
   );
 };
