@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const navigate = useNavigate();
+  const { items } = useSelector((state) => state.cart);
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    let quantity = 0;
+    items.forEach((item) => {
+      quantity += item.quantity;
+    });
+    setCartCount(quantity);
+  }, [items]);
+
   return (
     <AppBar
       position="static"
@@ -64,7 +76,7 @@ const NavBar = () => {
             component={Link}
             to="/cart"
           >
-            Cart
+            Cart ({cartCount})
           </Button>
         </Box>
       </Toolbar>
